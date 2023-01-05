@@ -106,6 +106,14 @@ p {
 
 /* Dashboard */
 
-.dashboard-employee-list::-webkit-scrollbar {
+.dashboard-employee-list-container::-webkit-scrollbar {
   width: 0.5px;
+}
+.dashboard-employee-list-item {
+  border: 1px solid #e8e8e8;
+  border-left: 4px solid red;
+  cursor: pointer;
+}
+.dashboard-employee-list-item:hover {
+  background-color: #f5f5f5;
 }

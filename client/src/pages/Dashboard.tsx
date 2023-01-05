@@ -20,7 +20,7 @@ const Dashboard = () => {
         }}
       >
         <Box
-          className="dashboard-employee-list"
+          className="dashboard-employee-list-container"
           sx={{ width: 350, height: "calc(100vh - 98px)", overflowY: "scroll" }}
         >
           <DashboardEmployeeList />

@@ -15,8 +15,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import WifiIcon from "@mui/icons-material/WifiTetheringOutlined";
+import DashboardIcon from "@mui/icons-material/DashboardOutlined";
+import PersonIcon from "@mui/icons-material/PersonOutlineOutlined";
+import PeopleAltIcon from "@mui/icons-material/PeopleAltOutlined";
+import AdminPanelIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
+import MonetizationIcon from "@mui/icons-material/MonetizationOnOutlined";
+import SettingsIcon from "@mui/icons-material/SettingsOutlined";
+import AssessmentIcon from "@mui/icons-material/AssessmentOutlined";
 
 const drawerWidth = 240;
 
@@ -81,6 +87,26 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
+const drawerMenu = [
+  "Dashboard",
+  "Hotspots",
+  "Employees",
+  "Groups",
+  "Admins",
+  "Reports",
+];
+
+const drawerIconOne = [
+  <DashboardIcon />,
+  <WifiIcon />,
+  <PersonIcon />,
+  <PeopleAltIcon />,
+  <AdminPanelIcon />,
+  <AssessmentIcon />,
+];
+
+const drawerIconTwo = [<SettingsIcon />, <MonetizationIcon />];
+
 const DashboardLayout: React.FC = (): JSX.Element => {
   const [open, setOpen] = React.useState(false);
 
@@ -114,7 +140,7 @@ const DashboardLayout: React.FC = (): JSX.Element => {
         <DrawerHeader />
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          {drawerMenu.map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
@@ -130,7 +156,7 @@ const DashboardLayout: React.FC = (): JSX.Element => {
                     justifyContent: "center",
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {drawerIconOne[index]}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -139,7 +165,7 @@ const DashboardLayout: React.FC = (): JSX.Element => {
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
+          {["Settings", "Pricing"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
@@ -155,7 +181,7 @@ const DashboardLayout: React.FC = (): JSX.Element => {
                     justifyContent: "center",
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {drawerIconTwo[index]}
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
