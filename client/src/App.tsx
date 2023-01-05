@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useRoutes } from "react-router-dom";
+import "./App.css";
+import Dashboard from "./pages/Dashboard";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const AuthLayout = React.lazy(() => import("./components/AuthLayout"));
+const DashboardLayout = React.lazy(
+  () => import("./components/DashboardLayout")
+);
+
+const routes = [
+  {
+    path: "app",
+    element: <DashboardLayout />,
+    children: [{ path: "dashboard", element: <Dashboard /> }],
+  },
+  {
+    path: "auth",
+    element: <AuthLayout />,
+    children: [
+      { path: "signin", element: <SignIn /> },
+      { path: "signup", element: <SignUp /> },
+    ],
+  },
+];
+
+const App: React.FC = (): JSX.Element => {
+  const content = useRoutes(routes);
+
+  return <React.Suspense>{content}</React.Suspense>;
+};
 
 export default App;
