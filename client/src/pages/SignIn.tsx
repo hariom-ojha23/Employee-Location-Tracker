@@ -1,10 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+import AuthPagesContainer from "../components/AuthPagesContainer";
 
 const SignIn = () => {
   return (
-    <div>
-      <h1>sign in</h1>
-    </div>
+    <AuthPagesContainer>
+      <div>
+        <Link to="/auth/signup">Hello</Link>
+      </div>
+    </AuthPagesContainer>
   );
 };
 

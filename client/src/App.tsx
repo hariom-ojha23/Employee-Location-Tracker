@@ -1,13 +1,14 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
 import "./App.css";
+import "mapbox-gl/dist/mapbox-gl.css";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 
-const AuthLayout = React.lazy(() => import("./components/AuthLayout"));
+const AuthLayout = React.lazy(() => import("./components/layouts/AuthLayout"));
 const DashboardLayout = React.lazy(
-  () => import("./components/DashboardLayout")
+  () => import("./components/layouts/DashboardLayout")
 );
 
 const routes = [
