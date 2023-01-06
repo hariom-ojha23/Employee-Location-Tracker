@@ -55,6 +55,7 @@ const SignIn: React.FC = (): JSX.Element => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="form-input"
           />
           <OutlinedInput
             fullWidth
@@ -63,12 +64,15 @@ const SignIn: React.FC = (): JSX.Element => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="form-input"
           />
           <Button fullWidth variant="contained" sx={{ my: 3, py: 1.3 }}>
             Sign In
           </Button>
-          <Box sx={{ mt: 2 }}>
-            <Link to="/auth/signup">Don't have an account? Sign Up</Link>
+          <Box sx={{ mt: 1.5 }}>
+            <Link style={{ fontSize: 14 }} to="/auth/signup">
+              Don't have an account? Sign Up
+            </Link>
           </Box>
         </Paper>
       </Box>

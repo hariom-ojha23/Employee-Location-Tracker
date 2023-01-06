@@ -23,11 +23,13 @@ import AdminPanelIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import MonetizationIcon from "@mui/icons-material/MonetizationOnOutlined";
 import SettingsIcon from "@mui/icons-material/SettingsOutlined";
 import AssessmentIcon from "@mui/icons-material/AssessmentOutlined";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
+  border: "none",
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -40,6 +42,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  border: "none",
   overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
@@ -64,9 +67,28 @@ const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
+  background: "transparent",
+  boxShadow: "none",
+  color: "black",
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+  ...(!open && {
+    marginLeft: 64,
+    width: `calc(100% - ${64}px)`,
+    transition: theme.transitions.create(["width", "margin"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   }),
 }));
 
@@ -87,6 +109,17 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
+const drawerLink = [
+  "/app/dashboard",
+  "/app/hotspots",
+  "/app/employees",
+  "/app/groups",
+  "/app/admins",
+  "/app/reports",
+  "/app/settings",
+  // "/app/pricing",
+];
+
 const drawerMenu = [
   "Dashboard",
   "Hotspots",
@@ -94,6 +127,8 @@ const drawerMenu = [
   "Groups",
   "Admins",
   "Reports",
+  "Settings",
+  // "Pricing",
 ];
 
 const drawerIconOne = [
@@ -103,12 +138,13 @@ const drawerIconOne = [
   <PeopleAltIcon />,
   <AdminPanelIcon />,
   <AssessmentIcon />,
+  <SettingsIcon />,
+  // <MonetizationIcon />,
 ];
 
-const drawerIconTwo = [<SettingsIcon />, <MonetizationIcon />];
-
 const DashboardLayout: React.FC = (): JSX.Element => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [selectedMenu, setSelectedMenu] = React.useState<number>(0);
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -118,7 +154,13 @@ const DashboardLayout: React.FC = (): JSX.Element => {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar
+          className="toolbar"
+          sx={{
+            background: "transparent",
+            borderRadius: 2,
+          }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -126,71 +168,87 @@ const DashboardLayout: React.FC = (): JSX.Element => {
             edge="start"
             sx={{
               marginRight: 5,
-              // ...(open && { display: "none" }),
             }}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            GPS Report
+          <Typography variant="subtitle1" noWrap component="div">
+            {drawerMenu[selectedMenu]}
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader />
-        <Divider />
-        <List>
-          {drawerMenu.map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
+        <Box
+          className="drawer"
+          sx={{
+            ml: 1,
+            my: 1,
+            p: 1,
+            borderRadius: 2,
+          }}
+        >
+          <Typography
+            sx={{ my: 2 }}
+            fontWeight="600"
+            textAlign="center"
+            variant="subtitle1"
+            component="div"
+          >
+            {open ? "GPS Report" : "GR"}
+          </Typography>
+          <Divider sx={{ mb: 1, backgroundColor: "#e8e8e8" }} />
+          <List>
+            {drawerMenu.map((text, index) => (
+              <ListItem
+                key={text}
+                disablePadding
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
+                  display: "block",
+                  borderRadius: 2,
+                  background:
+                    selectedMenu == index
+                      ? "linear-gradient(60deg, #49a3f1 0%, #1A73E8  100%)"
+                      : "inherit",
+                  color: "white",
+                  overflow: "hidden",
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
+                <Link
+                  to={drawerLink[index]}
+                  onClick={() => setSelectedMenu(index)}
                 >
-                  {drawerIconOne[index]}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["Settings", "Pricing"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {drawerIconTwo[index]}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
+                        color: "white",
+                      }}
+                    >
+                      {drawerIconOne[index]}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={text}
+                      sx={{
+                        opacity: open ? 1 : 0,
+                      }}
+                    />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
-        <DrawerHeader />
+        <Box sx={{ height: "50px" }}></Box>
         <Outlet />
       </Box>
     </Box>

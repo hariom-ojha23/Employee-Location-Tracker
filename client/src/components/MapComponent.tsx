@@ -18,17 +18,15 @@ const MapComponent: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <Map
-        initialViewState={{ ...viewState, zoom: 12 }}
-        mapboxAccessToken={MapBoxApi}
-        style={{ width: "100%", height: "calc(100vh - 98px)" }}
-        mapStyle={MapBoxStreetStyle}
-        onMove={onMove}
-      >
-        <Marker latitude={28.65195} longitude={77.23148} color="red" />
-      </Map>
-    </div>
+    <Map
+      initialViewState={{ ...viewState, zoom: 12 }}
+      mapboxAccessToken={MapBoxApi}
+      style={{ width: "100%", height: "calc(100vh - 85px)" }}
+      mapStyle={MapBoxStreetStyle}
+      onMove={onMove}
+    >
+      <Marker latitude={28.65195} longitude={77.23148} color="red" />
+    </Map>
   );
 };
 

@@ -59,6 +59,7 @@ const SignUp = () => {
             type="text"
             value={fullname}
             onChange={(e) => setFullName(e.target.value)}
+            className="form-input"
           />
           <OutlinedInput
             fullWidth
@@ -67,6 +68,7 @@ const SignUp = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="form-input"
           />
           <OutlinedInput
             fullWidth
@@ -75,6 +77,7 @@ const SignUp = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className="form-input"
           />
           <OutlinedInput
             fullWidth
@@ -83,12 +86,15 @@ const SignUp = () => {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            className="form-input"
           />
           <Button fullWidth variant="contained" sx={{ my: 3, py: 1.5 }}>
             Sign Up
           </Button>
-          <Box sx={{ mt: 2 }}>
-            <Link to="/auth/signin">Already have an account? Sign In</Link>
+          <Box sx={{ mt: 1.5 }}>
+            <Link style={{ fontSize: 14 }} to="/auth/signin">
+              Already have an account? Sign In
+            </Link>
           </Box>
         </Paper>
       </Box>
