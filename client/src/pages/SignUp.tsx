@@ -10,6 +10,9 @@ import Typography from "@mui/material/Typography";
 import { ToastType } from "../types";
 import ToastNotification from "../components/ToastNotification";
 
+import { useMutation } from "@apollo/client";
+import { CREATE_ORG } from "../graphql/organization";
+
 const SignUp = () => {
   const [fullname, setFullName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -23,6 +26,8 @@ const SignUp = () => {
 
   const theme = useTheme();
 
+  const [createOrganization, { error, data }] = useMutation(CREATE_ORG);
+
   const handleToastClose = useCallback(() => {
     return setToast({ ...toast, open: false });
   }, [toast]);
@@ -34,8 +39,8 @@ const SignUp = () => {
     return email.match(regex);
   };
 
-  const onSubmit = () => {
-    if (fullname.length == 0) {
+  const onSubmit = async () => {
+    if (fullname.length === 0) {
       setToast({
         variant: "error",
         message: "Full name is a required field",
@@ -60,7 +65,14 @@ const SignUp = () => {
         open: true,
       });
     } else {
-      console.log(fullname, email, password);
+      createOrganization({
+        variables: {
+          id: "2",
+          fullname,
+          email,
+          password,
+        },
+      });
     }
   };
 

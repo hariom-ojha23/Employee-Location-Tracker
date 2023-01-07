@@ -5,3 +5,5 @@ export const MapBoxDarkStyle = 'mapbox://styles/mapbox/dark-v11?optimize=true'
 export const MapBoxSatelliteStyle = 'mapbox://styles/mapbox/satellite-v9?optimize=true'
 export const MapBoxSatelliteStretStyle = 'mapbox://styles/mapbox/satellite-streets-v12?optimize=true'
 export const MapBoxNavigationNight = 'mapbox://styles/mapbox/navigation-night-v1'
+
+export const ServerApi = 'http://localhost:5000/graphql'

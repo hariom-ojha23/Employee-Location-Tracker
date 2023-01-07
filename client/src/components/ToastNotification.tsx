@@ -1,6 +1,6 @@
 import React from "react";
 import Snackbar from "@mui/material/Snackbar";
-import Alert, { AlertColor } from "@mui/material/Alert";
+import Alert from "@mui/material/Alert";
 import { ToastType } from "../types";
 
 type Props = {
