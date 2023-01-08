@@ -3,7 +3,7 @@ import cors from "cors"
 import { graphqlHTTP } from "express-graphql"
 import dotenv from 'dotenv'
 import { connectDB } from "./config/db"
-import { schema } from "./schema"
+import { schemaWithPermissions } from "./schema"
 
 const main = async () => {
   const app = express()
@@ -17,7 +17,7 @@ const main = async () => {
     .catch((error) => console.log(error))
 
   app.use('/graphql', graphqlHTTP({
-    schema,
+    schema: schemaWithPermissions,
     graphiql: true
   }))
 

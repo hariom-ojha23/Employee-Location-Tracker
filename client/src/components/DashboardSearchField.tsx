@@ -5,12 +5,6 @@ import { InputAdornment, AutocompleteRenderInputParams } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 const DashboardSearchField: React.FC = (): JSX.Element => {
-  const userArr = [
-    { id: 1, name: "Hari om Ojha" },
-    { id: 2, name: "Aditya Gupta" },
-    { id: 3, name: "Akash Sharma" },
-  ];
-
   const renderInput = (params: AutocompleteRenderInputParams) => {
     params.InputProps.startAdornment = (
       <InputAdornment position="start">

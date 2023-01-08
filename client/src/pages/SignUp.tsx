@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import { Box, OutlinedInput, Avatar, useTheme } from "@mui/material";
@@ -11,7 +11,7 @@ import { ToastType } from "../types";
 import ToastNotification from "../components/ToastNotification";
 
 import { useMutation } from "@apollo/client";
-import { CREATE_ORG } from "../graphql/organization";
+import { REGISTER_ORG } from "../graphql/organization";
 
 const SignUp = () => {
   const [fullname, setFullName] = useState<string>("");
@@ -25,8 +25,16 @@ const SignUp = () => {
   });
 
   const theme = useTheme();
+  const [registerOrganization, { error, data }] = useMutation(REGISTER_ORG);
 
-  const [createOrganization, { error, data }] = useMutation(CREATE_ORG);
+  useEffect(() => {
+    if (error) {
+      setToast({ open: true, variant: "error", message: error.message });
+    }
+    if (data) {
+      console.log(data.registerOrganization);
+    }
+  }, [data, error]);
 
   const handleToastClose = useCallback(() => {
     return setToast({ ...toast, open: false });
@@ -65,13 +73,8 @@ const SignUp = () => {
         open: true,
       });
     } else {
-      createOrganization({
-        variables: {
-          id: "2",
-          fullname,
-          email,
-          password,
-        },
+      registerOrganization({
+        variables: { fullname, email, password },
       });
     }
   };

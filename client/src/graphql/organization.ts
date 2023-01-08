@@ -1,29 +1,33 @@
 import {gql} from '@apollo/client'
 
-export const CREATE_ORG = gql`
-  mutation createOrganization(
-    $id: String!,
-    $fullname: String!,
-    $email: String!,
-    $password: String!,
-    $orgname: String,
-    $orglogo: String,
-    $created: Date,
-    $updated: Date,
-  ) {
-    createOrganization(
-      id: $id,
-      fullname: $fullname,
-      email: $email,
-      password: $password,
-      orgname: $orgname,
-      orglogo: $orglogo,
-      created: $created,
-      updated: $updated,
-    ) {
-      id
-      fullname
-      email
+export const REGISTER_ORG = gql`
+  mutation registerOrganization($fullname: String!, $email: String!, $password: String!,) {
+    registerOrganization( fullname: $fullname, email: $email, password: $password,) {
+      userInfo {
+        id
+        fullname
+        email
+        orgname
+        orglogo
+      }
+      accessToken
+      refreshToken
+    }
+  }
+`
+
+export const LOGIN_ORG = gql`
+  mutation loginOrganization($email: String!, $password: String!,) {
+    loginOrganization( email: $email, password: $password,) {
+      userInfo {
+        id
+        fullname
+        email
+        orgname
+        orglogo
+      }
+      accessToken
+      refreshToken
     }
   }
 `

@@ -1,22 +1,37 @@
 import { GraphQLObjectType, GraphQLSchema } from "graphql/type";
-import { CreateOrganization } from "./mutations/Organization";
-import { GetAllOrgaizations } from "./queries/Organization";
+import { RegisterOrganization, LoginOrganization } from "./mutations/Organization";
+import { GetAllOrganizations } from "./queries/Organization";
+import {applyMiddleware} from "graphql-middleware"
+import {shield, not} from 'graphql-shield'
+import { isAuthenticated, isNotAlreadyRegistered } from "../utils/auth";
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   fields: () => ({
-    getAllOrgaizations: GetAllOrgaizations
+    getAllOrganizations: GetAllOrganizations
   }),
 })
 
 const RootMutation = new GraphQLObjectType({
   name: 'RootMutation',
   fields: () => ({
-    createOrganization: CreateOrganization
+    registerOrganization: RegisterOrganization,
+    loginOrganization: LoginOrganization
   })
 })
 
-export const schema = new GraphQLSchema({
+const permissions = shield({
+  RootQuery: {
+    getAllOrganizations: isAuthenticated
+  },
+  RootMutation: {
+    registerOrganization: isNotAlreadyRegistered
+  }
+})
+
+const schema = new GraphQLSchema({
   query: RootQuery,
   mutation: RootMutation,
 })
+
+export const schemaWithPermissions = applyMiddleware(schema, permissions)

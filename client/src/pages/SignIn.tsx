@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import { Box, OutlinedInput, Avatar, useTheme } from "@mui/material";
@@ -10,6 +10,9 @@ import Typography from "@mui/material/Typography";
 import ToastNotification from "../components/ToastNotification";
 import { ToastType } from "../types";
 
+import { useMutation } from "@apollo/client";
+import { LOGIN_ORG } from "../graphql/organization";
+
 const SignIn: React.FC = (): JSX.Element => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -20,6 +23,17 @@ const SignIn: React.FC = (): JSX.Element => {
   });
 
   const theme = useTheme();
+
+  const [loginOrganization, { error, data }] = useMutation(LOGIN_ORG);
+
+  useEffect(() => {
+    if (error) {
+      setToast({ open: true, variant: "error", message: error.message });
+    }
+    if (data) {
+      console.log(data.loginOrganization);
+    }
+  }, [data, error]);
 
   const handleToastClose = useCallback(() => {
     return setToast({ ...toast, open: false });
@@ -46,7 +60,7 @@ const SignIn: React.FC = (): JSX.Element => {
         open: true,
       });
     } else {
-      console.log(email, password);
+      loginOrganization({ variables: { email, password } });
     }
   };
 

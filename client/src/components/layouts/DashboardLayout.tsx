@@ -20,7 +20,7 @@ import DashboardIcon from "@mui/icons-material/DashboardOutlined";
 import PersonIcon from "@mui/icons-material/PersonOutlineOutlined";
 import PeopleAltIcon from "@mui/icons-material/PeopleAltOutlined";
 import AdminPanelIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import MonetizationIcon from "@mui/icons-material/MonetizationOnOutlined";
+// import MonetizationIcon from "@mui/icons-material/MonetizationOnOutlined";
 import SettingsIcon from "@mui/icons-material/SettingsOutlined";
 import AssessmentIcon from "@mui/icons-material/AssessmentOutlined";
 import { Link } from "react-router-dom";
@@ -49,15 +49,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
 });
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -206,7 +197,7 @@ const DashboardLayout: React.FC = (): JSX.Element => {
                   display: "block",
                   borderRadius: 2,
                   background:
-                    selectedMenu == index
+                    selectedMenu === index
                       ? "linear-gradient(60deg, #49a3f1 0%, #1A73E8  100%)"
                       : "inherit",
                   color: "white",

@@ -4,7 +4,7 @@ import { DateScalerType } from "../scalars/DateScalar";
 export const OrganizationType = new GraphQLObjectType({
   name: 'Organization',
   fields: () => ({
-    id: {type: GraphQLNonNull(GraphQLString)},
+    id: {type: GraphQLString},
     fullname: {type: GraphQLNonNull(GraphQLString)},
     email: {type: GraphQLNonNull(GraphQLString)},
     password: {type: GraphQLNonNull(GraphQLString)},
