@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RouteObject, useRoutes } from "react-router-dom";
 import "./App.css";
 import "mapbox-gl/dist/mapbox-gl.css";

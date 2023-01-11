@@ -7,9 +7,17 @@ import { BrowserRouter } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { ServerApi } from "./uri";
 
+const accessToken: string | null = localStorage.getItem("accessToken") || null;
+const refreshToken: string | null =
+  localStorage.getItem("refreshToken") || null;
+
 const client = new ApolloClient({
   uri: ServerApi,
   cache: new InMemoryCache(),
+  headers: {
+    authorization: accessToken ? `Bearer ${accessToken}` : "",
+    refresh_token: refreshToken ? `${refreshToken}` : "",
+  },
 });
 
 const root = ReactDOM.createRoot(

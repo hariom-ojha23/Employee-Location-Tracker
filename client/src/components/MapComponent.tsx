@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Map, { ViewStateChangeEvent, Marker } from "react-map-gl";
-import { MapBoxApi, MapBoxStreetStyle } from "../uri";
+import { MapBoxApi, MapBoxCustomStyle } from "../uri";
 
 type ViewStateType = {
   longitude: number;
@@ -19,10 +19,10 @@ const MapComponent: React.FC = (): JSX.Element => {
 
   return (
     <Map
-      initialViewState={{ ...viewState, zoom: 12 }}
+      initialViewState={{ ...viewState, zoom: 13 }}
       mapboxAccessToken={MapBoxApi}
       style={{ width: "100%", height: "calc(100vh - 85px)" }}
-      mapStyle={MapBoxStreetStyle}
+      mapStyle={MapBoxCustomStyle}
       onMove={onMove}
     >
       <Marker latitude={28.65195} longitude={77.23148} color="red" />

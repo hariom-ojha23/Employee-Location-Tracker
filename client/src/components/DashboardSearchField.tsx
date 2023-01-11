@@ -18,7 +18,7 @@ const DashboardSearchField: React.FC = (): JSX.Element => {
     <Autocomplete
       id="free-solo-demo"
       freeSolo
-      sx={{ mt: 0.5 }}
+      sx={{ mt: 0.5, backgroundColor: "white" }}
       options={[].map((option) => option)}
       renderInput={renderInput}
     />

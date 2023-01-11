@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import { Box, OutlinedInput, Avatar, useTheme } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -25,6 +25,8 @@ const SignUp = () => {
   });
 
   const theme = useTheme();
+  const navigate = useNavigate();
+
   const [registerOrganization, { error, data }] = useMutation(REGISTER_ORG);
 
   useEffect(() => {
@@ -32,7 +34,12 @@ const SignUp = () => {
       setToast({ open: true, variant: "error", message: error.message });
     }
     if (data) {
-      console.log(data.registerOrganization);
+      const { userInfo, accessToken, refreshToken } = data.loginOrganization;
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+      navigate("/app/dashboard");
     }
   }, [data, error]);
 

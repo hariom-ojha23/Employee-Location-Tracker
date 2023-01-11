@@ -19,13 +19,16 @@ const DashboardEmployeeList: React.FC = (): JSX.Element => {
               sx={{
                 px: 1,
                 py: 1.5,
-                borderRadius: 1,
+                borderRadius: 1.5,
                 mb: 0.5,
+                backgroundColor: "white",
               }}
               className="dashboard-employee-list-item"
             >
               <ListItemAvatar>
-                <Avatar sx={{ backgroundColor: "orange" }}>
+                <Avatar
+                  sx={{ background: "linear-gradient(#49a3f1, #1A73E8)" }}
+                >
                   <PersonIcon />
                 </Avatar>
               </ListItemAvatar>

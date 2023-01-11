@@ -18,7 +18,9 @@ const main = async () => {
 
   app.use('/graphql', graphqlHTTP({
     schema: schemaWithPermissions,
-    graphiql: true
+    graphiql: {
+      headerEditorEnabled: true
+    }
   }))
 
   const PORT = process.env.PORT || 5000;

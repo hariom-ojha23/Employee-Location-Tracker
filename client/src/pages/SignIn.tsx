@@ -12,6 +12,7 @@ import { ToastType } from "../types";
 
 import { useMutation } from "@apollo/client";
 import { LOGIN_ORG } from "../graphql/organization";
+import { useNavigate } from "react-router-dom";
 
 const SignIn: React.FC = (): JSX.Element => {
   const [email, setEmail] = useState<string>("");
@@ -23,6 +24,7 @@ const SignIn: React.FC = (): JSX.Element => {
   });
 
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const [loginOrganization, { error, data }] = useMutation(LOGIN_ORG);
 
@@ -31,7 +33,12 @@ const SignIn: React.FC = (): JSX.Element => {
       setToast({ open: true, variant: "error", message: error.message });
     }
     if (data) {
-      console.log(data.loginOrganization);
+      const { userInfo, accessToken, refreshToken } = data.loginOrganization;
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+      navigate("/app/dashboard");
     }
   }, [data, error]);
 
