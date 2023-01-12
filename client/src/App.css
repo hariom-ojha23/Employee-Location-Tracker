@@ -30,6 +30,15 @@ p {
   font-size: 14px !important;
 }
 
+.MuiOutlinedInput-root{
+  padding: 0px !important
+}
+
+.MuiOutlinedInput-root > input {
+  padding: 14px !important;
+  font-size: 14px !important;
+}
+
 .header {
   position:relative;
   text-align:center;
@@ -166,7 +175,7 @@ p {
   background: linear-gradient(#49a3f1, #1A73E8);
 }
 
-.MuiSelect-select {
+.form-select > .MuiSelect-select {
   padding: 12px !important;
   font-size: 14px !important;
 }

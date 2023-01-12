@@ -7,7 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 const DashboardSearchField: React.FC = (): JSX.Element => {
   const renderInput = (params: AutocompleteRenderInputParams) => {
     params.InputProps.startAdornment = (
-      <InputAdornment position="start">
+      <InputAdornment sx={{ ml: 1 }} position="start">
         <SearchIcon />
       </InputAdornment>
     );

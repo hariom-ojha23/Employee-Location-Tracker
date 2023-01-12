@@ -24,6 +24,7 @@ import { Link } from "react-router-dom";
 
 import DashboardToolbar from "../toolbars/DashboardToolbar";
 import HotspotToolbar from "../toolbars/HotspotToolbar";
+import EmployeeToolbar from "../toolbars/EmployeeToolbar";
 
 const drawerWidth = 240;
 
@@ -175,7 +176,7 @@ const DashboardLayout: React.FC = (): JSX.Element => {
             />
           )}
           {selectedMenu === 2 && (
-            <DashboardToolbar
+            <EmployeeToolbar
               title={drawerMenu[selectedMenu]}
               toggleDrawer={toggleDrawer}
             />
@@ -224,7 +225,7 @@ const DashboardLayout: React.FC = (): JSX.Element => {
                   borderRadius: 2,
                   background:
                     selectedMenu === index
-                      ? "linear-gradient(60deg, #49a3f1 0%, #1A73E8  100%)"
+                      ? "linear-gradient(#49a3f1 0%, #1A73E8  100%)"
                       : "inherit",
                   color: "white",
                   overflow: "hidden",
@@ -251,12 +252,15 @@ const DashboardLayout: React.FC = (): JSX.Element => {
                     >
                       {drawerIconOne[index]}
                     </ListItemIcon>
-                    <ListItemText
-                      primary={text}
+                    <Typography
                       sx={{
-                        opacity: open ? 1 : 0,
+                        display: open ? "block" : "none",
+                        color: "white",
+                        fontSize: 14,
                       }}
-                    />
+                    >
+                      {text}
+                    </Typography>
                   </ListItemButton>
                 </Link>
               </ListItem>

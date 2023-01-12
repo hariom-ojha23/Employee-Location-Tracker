@@ -64,6 +64,7 @@ export default function MultipleSelect(props: Props) {
         value={personName}
         onChange={handleChange}
         sx={{ mb: 2 }}
+        className="form-select"
         input={<OutlinedInput fullWidth className="form-input" />}
         MenuProps={MenuProps}
         renderValue={(selected) => {
