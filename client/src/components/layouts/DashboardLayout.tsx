@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -9,8 +9,6 @@ import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -20,10 +18,12 @@ import DashboardIcon from "@mui/icons-material/DashboardOutlined";
 import PersonIcon from "@mui/icons-material/PersonOutlineOutlined";
 import PeopleAltIcon from "@mui/icons-material/PeopleAltOutlined";
 import AdminPanelIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-// import MonetizationIcon from "@mui/icons-material/MonetizationOnOutlined";
 import SettingsIcon from "@mui/icons-material/SettingsOutlined";
 import AssessmentIcon from "@mui/icons-material/AssessmentOutlined";
 import { Link } from "react-router-dom";
+
+import DashboardToolbar from "../toolbars/DashboardToolbar";
+import HotspotToolbar from "../toolbars/HotspotToolbar";
 
 const drawerWidth = 240;
 
@@ -108,7 +108,6 @@ const drawerLink = [
   "/app/admins",
   "/app/reports",
   "/app/settings",
-  // "/app/pricing",
 ];
 
 const drawerMenu = [
@@ -119,7 +118,6 @@ const drawerMenu = [
   "Admins",
   "Reports",
   "Settings",
-  // "Pricing",
 ];
 
 const drawerIconOne = [
@@ -130,16 +128,22 @@ const drawerIconOne = [
   <AdminPanelIcon />,
   <AssessmentIcon />,
   <SettingsIcon />,
-  // <MonetizationIcon />,
 ];
 
 const DashboardLayout: React.FC = (): JSX.Element => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedMenu, setSelectedMenu] = React.useState<number>(0);
 
-  const toggleDrawer = () => {
+  const location = useLocation();
+
+  React.useEffect(() => {
+    const path = location.pathname;
+    setSelectedMenu(drawerLink.findIndex((x) => x === path));
+  }, [location]);
+
+  const toggleDrawer = React.useCallback(() => {
     setOpen(!open);
-  };
+  }, [open]);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -150,22 +154,44 @@ const DashboardLayout: React.FC = (): JSX.Element => {
           sx={{
             background: "transparent",
             borderRadius: 2,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+            padding: 0,
           }}
         >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer}
-            edge="start"
-            sx={{
-              marginRight: 5,
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="subtitle1" noWrap component="div">
-            {drawerMenu[selectedMenu]}
-          </Typography>
+          {selectedMenu === 0 && (
+            <DashboardToolbar
+              title={drawerMenu[selectedMenu]}
+              toggleDrawer={toggleDrawer}
+            />
+          )}
+          {selectedMenu === 1 && (
+            <HotspotToolbar
+              title={drawerMenu[selectedMenu]}
+              toggleDrawer={toggleDrawer}
+            />
+          )}
+          {selectedMenu === 2 && (
+            <DashboardToolbar
+              title={drawerMenu[selectedMenu]}
+              toggleDrawer={toggleDrawer}
+            />
+          )}
+          {selectedMenu === 3 && (
+            <DashboardToolbar
+              title={drawerMenu[selectedMenu]}
+              toggleDrawer={toggleDrawer}
+            />
+          )}
+          {selectedMenu === 4 && (
+            <DashboardToolbar
+              title={drawerMenu[selectedMenu]}
+              toggleDrawer={toggleDrawer}
+            />
+          )}
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>

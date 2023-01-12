@@ -7,7 +7,11 @@ type ViewStateType = {
   latitude: number;
 };
 
-const MapComponent: React.FC = (): JSX.Element => {
+type Props = {
+  height: string;
+};
+
+const MapComponent = (props: Props): JSX.Element => {
   const [viewState, setViewState] = useState<ViewStateType>({
     longitude: 77.23148,
     latitude: 28.65195,
@@ -21,7 +25,7 @@ const MapComponent: React.FC = (): JSX.Element => {
     <Map
       initialViewState={{ ...viewState, zoom: 13 }}
       mapboxAccessToken={MapBoxApi}
-      style={{ width: "100%", height: "calc(100vh - 85px)" }}
+      style={{ width: "100%", height: props.height }}
       mapStyle={MapBoxCustomStyle}
       onMove={onMove}
     >

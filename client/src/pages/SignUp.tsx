@@ -41,7 +41,7 @@ const SignUp = () => {
 
       navigate("/app/dashboard");
     }
-  }, [data, error]);
+  }, [data, error, navigate]);
 
   const handleToastClose = useCallback(() => {
     return setToast({ ...toast, open: false });

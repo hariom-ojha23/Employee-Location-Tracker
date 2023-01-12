@@ -36,7 +36,7 @@ const Dashboard = () => {
             border: "0.5px solid #e8e8e8",
           }}
         >
-          <MapComponent />
+          <MapComponent height="calc(100vh - 85px)" />
         </Box>
       </Box>
     </Box>
