@@ -1,17 +1,16 @@
 import React, { useState, useCallback } from "react";
-import { Box, IconButton, Typography, Stack } from "@mui/material";
+import { IconButton, Typography, Stack } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import AddHotspotDialog from "../dialogs/AddHotspotDialog";
 import ToolbarSearchField from "../ToolbarSearchField";
 
-type HotspotProps = {
+type AdminProps = {
   title: string;
   toggleDrawer: () => void;
 };
 
-const HotspotToolbar = (props: HotspotProps) => {
+const AdminToolbar = (props: AdminProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const toggleDialog = useCallback(() => {
@@ -37,7 +36,7 @@ const HotspotToolbar = (props: HotspotProps) => {
         </Typography>
       </Stack>
       <Stack direction="row" alignItems="center">
-        <ToolbarSearchField placeholder="Search Hotspot" />
+        <ToolbarSearchField placeholder="Search Admin" />
         <Button
           variant="contained"
           startIcon={<AddIcon />}
@@ -51,12 +50,11 @@ const HotspotToolbar = (props: HotspotProps) => {
           }}
           onClick={toggleDialog}
         >
-          Add Hotspot
+          Add Admin
         </Button>
-        <AddHotspotDialog open={open} handleClose={toggleDialog} />
       </Stack>
     </React.Fragment>
   );
 };
 
-export default React.memo(HotspotToolbar);
+export default React.memo(AdminToolbar);

@@ -1,13 +1,13 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
-import EnhancedTable from "../components/TableComponent";
 import MapComponent from "../components/MapComponent";
+import SimpleTable from "../components/SimpleTable";
 
 const Hotspots: React.FC = (): JSX.Element => {
   return (
     <Grid container spacing={2}>
       <Grid item lg={6}>
-        <EnhancedTable />
+        <SimpleTable />
       </Grid>
       <Grid item lg={6} sx={{ width: "100%" }}>
         <Box

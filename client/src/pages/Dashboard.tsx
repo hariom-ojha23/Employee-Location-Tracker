@@ -2,7 +2,6 @@ import React from "react";
 import { Box } from "@mui/material";
 import MapComponent from "../components/MapComponent";
 import DashboardEmployeeList from "../components/DashboardEmployeeList";
-import DashboardSearchField from "../components/DashboardSearchField";
 
 const Dashboard = () => {
   return (
@@ -24,7 +23,6 @@ const Dashboard = () => {
           className="dashboard-employee-list-container"
           sx={{ width: 350, height: "calc(100vh - 85px)", overflowY: "scroll" }}
         >
-          <DashboardSearchField />
           <DashboardEmployeeList />
         </Box>
         <Box

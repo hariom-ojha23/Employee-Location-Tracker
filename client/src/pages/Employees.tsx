@@ -1,11 +1,11 @@
-import { Box } from "@mui/material";
 import React from "react";
-import EnhancedTable from "../components/TableComponent";
+import { Box } from "@mui/material";
+import SimpleTable from "../components/SimpleTable";
 
 const Employees: React.FC = (): JSX.Element => {
   return (
     <Box>
-      <EnhancedTable />
+      <SimpleTable />
     </Box>
   );
 };

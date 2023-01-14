@@ -25,6 +25,8 @@ import { Link } from "react-router-dom";
 import DashboardToolbar from "../toolbars/DashboardToolbar";
 import HotspotToolbar from "../toolbars/HotspotToolbar";
 import EmployeeToolbar from "../toolbars/EmployeeToolbar";
+import GroupToolbar from "../toolbars/GroupToolbar";
+import AdminToolbar from "../toolbars/AdminToolbar";
 
 const drawerWidth = 240;
 
@@ -182,13 +184,13 @@ const DashboardLayout: React.FC = (): JSX.Element => {
             />
           )}
           {selectedMenu === 3 && (
-            <DashboardToolbar
+            <GroupToolbar
               title={drawerMenu[selectedMenu]}
               toggleDrawer={toggleDrawer}
             />
           )}
           {selectedMenu === 4 && (
-            <DashboardToolbar
+            <AdminToolbar
               title={drawerMenu[selectedMenu]}
               toggleDrawer={toggleDrawer}
             />

@@ -48,7 +48,7 @@ const rows = [
   createData("Oreo", 437, 18.0, 63, 4.0),
 ];
 
-function TableComponent() {
+function SimpleTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -147,4 +147,4 @@ function TableComponent() {
   );
 }
 
-export default React.memo(TableComponent);
+export default React.memo(SimpleTable);

@@ -1,16 +1,17 @@
 import React, { useState, useCallback } from "react";
-import { Box, IconButton, Typography, Stack } from "@mui/material";
+import { IconButton, Typography, Stack } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import AddEmployeeDialog from "../dialogs/AddEmployeeDialog";
+import ToolbarSearchField from "../ToolbarSearchField";
 
-type HotspotProps = {
+type EmployeeProps = {
   title: string;
   toggleDrawer: () => void;
 };
 
-const EmployeeToolbar = (props: HotspotProps) => {
+const EmployeeToolbar = (props: EmployeeProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   const toggleDialog = useCallback(() => {
@@ -35,7 +36,8 @@ const EmployeeToolbar = (props: HotspotProps) => {
           {props.title}
         </Typography>
       </Stack>
-      <Box sx={{ float: "right" }}>
+      <Stack direction="row" alignItems="center">
+        <ToolbarSearchField placeholder="Search Employee" />
         <Button
           variant="contained"
           startIcon={<AddIcon />}
@@ -52,7 +54,7 @@ const EmployeeToolbar = (props: HotspotProps) => {
           Add Employee
         </Button>
         <AddEmployeeDialog open={open} handleClose={toggleDialog} />
-      </Box>
+      </Stack>
     </React.Fragment>
   );
 };
