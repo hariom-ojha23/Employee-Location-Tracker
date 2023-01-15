@@ -73,7 +73,7 @@ function SimpleTable() {
       sx={{ mb: 1, borderRadius: 2, overflow: "hidden" }}
     >
       <TableContainer className="table-container">
-        <Table sx={{ minWidth: 920 }}>
+        <Table>
           <TableHead className="table-head">
             <TableRow
               sx={{

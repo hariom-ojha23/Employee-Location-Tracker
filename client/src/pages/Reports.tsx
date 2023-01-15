@@ -18,7 +18,7 @@ const Reports: React.FC = (): JSX.Element => {
             count={23}
             bg="linear-gradient(#49a3f1, #1A73E8)"
           >
-            <WifiIcon />
+            <WifiIcon fontSize="medium" />
           </ReportHeaderCard>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>

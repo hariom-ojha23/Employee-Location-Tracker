@@ -6,10 +6,10 @@ import SimpleTable from "../components/SimpleTable";
 const Hotspots: React.FC = (): JSX.Element => {
   return (
     <Grid container spacing={2}>
-      <Grid item lg={6}>
+      <Grid item xs={12} lg={6}>
         <SimpleTable />
       </Grid>
-      <Grid item lg={6} sx={{ width: "100%" }}>
+      <Grid item xs={12} lg={6} sx={{ width: "100%" }}>
         <Box
           sx={{
             borderRadius: 2,

@@ -27,6 +27,7 @@ import EmployeeToolbar from "../toolbars/EmployeeToolbar";
 import GroupToolbar from "../toolbars/GroupToolbar";
 import AdminToolbar from "../toolbars/AdminToolbar";
 import ReportToolbar from "../toolbars/ReportToolbar";
+import SettingToolbar from "../toolbars/SettingToolbar";
 
 const drawerWidth = 240;
 
@@ -197,6 +198,12 @@ const DashboardLayout: React.FC = (): JSX.Element => {
           )}
           {selectedMenu === 5 && (
             <ReportToolbar
+              title={drawerMenu[selectedMenu]}
+              toggleDrawer={toggleDrawer}
+            />
+          )}
+          {selectedMenu === 6 && (
+            <SettingToolbar
               title={drawerMenu[selectedMenu]}
               toggleDrawer={toggleDrawer}
             />

@@ -13,6 +13,21 @@ body {
   background-color: rgb(240, 242, 245) !important ;
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row !important;
+}
+.justify-center {
+  justify-content: center;
+}
+.align-center {
+  align-items: center;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column !important;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -106,13 +121,6 @@ p {
   }
   100% { 
     transform: translate3d(85px,0,0);
-  }
-}
-/*Shrinking for mobile*/
-@media (max-width: 768px) {
-  .waves {
-    height:40px;
-    min-height:40px;
   }
 }
 
@@ -213,4 +221,28 @@ p {
   position: absolute;
   top: -30px;
   left: 8px;
+}
+
+/* Report End */
+
+.profile-photo {
+  width: 180px;
+  height: 180px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .waves {
+    height:40px;
+    min-height:40px;
+  }
+  .profile-photo {
+    width: 140px;
+    height: 140px;
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
+  }
 }
