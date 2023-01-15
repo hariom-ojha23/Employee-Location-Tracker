@@ -31,7 +31,7 @@ p {
   border-radius: 8px;
 }
 
-.MuiOutlinedInput-root{
+.form-input > .MuiOutlinedInput-root{
   padding: 0px !important
 }
 
@@ -172,6 +172,10 @@ p {
   font-weight: 500 !important;
 }
 
+.table-cell-inner {
+  font-size: 0.85em !important; 
+}
+
 /* Table End */
 
 
@@ -185,4 +189,28 @@ p {
 .form-select > .MuiSelect-select {
   padding: 12px !important;
   font-size: 14px !important;
+}
+
+
+/* Report Start */
+
+.report-header-card {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.report-header-card-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#49a3f1, #1A73E8);
+  color: white;
+  position: absolute;
+  top: -30px;
+  left: 8px;
 }

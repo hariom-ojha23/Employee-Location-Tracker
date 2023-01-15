@@ -12,7 +12,6 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import WifiIcon from "@mui/icons-material/WifiTetheringOutlined";
 import DashboardIcon from "@mui/icons-material/DashboardOutlined";
 import PersonIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -27,6 +26,7 @@ import HotspotToolbar from "../toolbars/HotspotToolbar";
 import EmployeeToolbar from "../toolbars/EmployeeToolbar";
 import GroupToolbar from "../toolbars/GroupToolbar";
 import AdminToolbar from "../toolbars/AdminToolbar";
+import ReportToolbar from "../toolbars/ReportToolbar";
 
 const drawerWidth = 240;
 
@@ -191,6 +191,12 @@ const DashboardLayout: React.FC = (): JSX.Element => {
           )}
           {selectedMenu === 4 && (
             <AdminToolbar
+              title={drawerMenu[selectedMenu]}
+              toggleDrawer={toggleDrawer}
+            />
+          )}
+          {selectedMenu === 5 && (
+            <ReportToolbar
               title={drawerMenu[selectedMenu]}
               toggleDrawer={toggleDrawer}
             />

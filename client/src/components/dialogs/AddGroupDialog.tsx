@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useCallback, useState } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -6,12 +6,10 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Divider from "@mui/material/Divider";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Box from "@mui/material/Box";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
-import MultipleSelectInput from "../MultipleSelectInput";
-
-const MapComponent = React.lazy(() => import("../MapComponent"));
+import { Stack, Typography } from "@mui/material";
+import TimePicker from "../TimePicker";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -27,7 +25,33 @@ type Props = {
   handleClose: () => void;
 };
 
-const AddHotspotDialog = (props: Props) => {
+type ScheduleProps = {
+  startTime: Date | null;
+  endTime: Date | null;
+};
+
+const AddGroupDialog = (props: Props) => {
+  const [schedule, setSchedule] = useState<ScheduleProps>({
+    startTime: null,
+    endTime: null,
+  });
+
+  console.log(schedule);
+
+  const setStartTime = useCallback(
+    (newVal: Date | null) => {
+      setSchedule({ ...schedule, startTime: newVal });
+    },
+    [schedule]
+  );
+
+  const setEndTime = useCallback(
+    (newVal: Date | null) => {
+      setSchedule({ ...schedule, endTime: newVal });
+    },
+    [schedule]
+  );
+
   return (
     <Dialog
       // TransitionComponent={Transition}
@@ -35,20 +59,31 @@ const AddHotspotDialog = (props: Props) => {
       open={props.open}
       onClose={props.handleClose}
     >
-      <DialogTitle sx={{ fontSize: 16 }}>Add New Hotspot</DialogTitle>
+      <DialogTitle sx={{ fontSize: 16 }}>Add New Group</DialogTitle>
       <Divider />
       <DialogContent sx={{ pb: 1 }} className="dialog-content">
         <OutlinedInput
           fullWidth
-          placeholder="Hotspot Name"
+          placeholder="Group Name"
           type="text"
           className="form-input"
-          sx={{ mb: 2 }}
+          sx={{ mb: 3 }}
         />
-        <MultipleSelectInput placeholder="Select Groups" />
-        <Box sx={{ borderRadius: 2, overflow: "hidden" }}>
-          <MapComponent height="300px" />
-        </Box>
+        <Typography sx={{ fontSize: 14, mb: 1, color: "gray" }}>
+          Schedule Tracking
+        </Typography>
+        <Stack direction="row" gap={2}>
+          <TimePicker
+            time={schedule!.startTime}
+            setTime={setStartTime}
+            placeholder="Start Time"
+          />
+          <TimePicker
+            time={schedule!.endTime}
+            setTime={setEndTime}
+            placeholder="End Time"
+          />
+        </Stack>
       </DialogContent>
       <DialogActions sx={{ px: 3, pb: 1.5 }}>
         <Button
@@ -71,4 +106,4 @@ const AddHotspotDialog = (props: Props) => {
   );
 };
 
-export default AddHotspotDialog;
+export default AddGroupDialog;

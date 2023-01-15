@@ -9,7 +9,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Box from "@mui/material/Box";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
-import SelectInput from "../SelectInput";
+import MultipleSelectInput from "../MultipleSelectInput";
 import CountryCodeSelect from "../CountryCodeSelect";
 import { Stack } from "@mui/material";
 
@@ -61,8 +61,7 @@ const AddEmployeeDialog = (props: Props) => {
             className="form-input"
           />
         </Stack>
-
-        <SelectInput placeholder="Select Groups" />
+        <MultipleSelectInput placeholder="Select Groups" />
       </DialogContent>
       <DialogActions sx={{ px: 3, pb: 1.5 }}>
         <Button

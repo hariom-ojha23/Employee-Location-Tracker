@@ -4,6 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import ToolbarSearchField from "../ToolbarSearchField";
+import AddGroupDialog from "../dialogs/AddGroupDialog";
 
 type GroupProps = {
   title: string;
@@ -52,6 +53,7 @@ const GroupToolbar = (props: GroupProps) => {
         >
           Add Group
         </Button>
+        <AddGroupDialog open={open} handleClose={toggleDialog} />
       </Stack>
     </React.Fragment>
   );
