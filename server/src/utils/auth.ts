@@ -1,5 +1,5 @@
 import { rule } from "graphql-shield";
-import { organizations } from "../entities/Organizations";
+import { Organizations } from "../entities/Organizations";
 import jwt from "jsonwebtoken";
 import bcrypt from 'bcryptjs'
 import dotenv from 'dotenv'
@@ -17,7 +17,7 @@ export const isAuthenticated = rule()(async (parent, args, ctx, info) => {
 
 export const isNotAlreadyRegistered = rule()(async (parent, args, ctx, info) => {
   const email = args.email
-  const user = await organizations.findOneBy({email: email})
+  const user = await Organizations.findOneBy({email: email})
 
   if (user) return new Error("A user with this email already exist")
   return true
@@ -48,7 +48,7 @@ async function verifyAccessToken(token: string) {
     const access_secret: string = process.env.ACCESS_TOKEN_SECRET ? process.env.ACCESS_TOKEN_SECRET : "1234567890"
     const decode = jwt.verify(token, access_secret) as JwtPayload
     const id: string = decode.id
-    const org = organizations.findOneBy({id: id})
+    const org = Organizations.findOneBy({id: id})
     if (!org) throw new Error('You are not authorised')
 
     return true

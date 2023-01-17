@@ -1,7 +1,11 @@
 import { DataSource } from "typeorm";
 import dotenv from 'dotenv'
 
-import { organizations } from "../entities/Organizations"
+import { Organizations } from "../entities/Organizations"
+import { Hotspot } from "../entities/Hotspots";
+import { Group } from "../entities/Groups";
+import { Employee } from "../entities/Employees";
+import { Admin } from "../entities/Admins";
 
 dotenv.config()
 
@@ -15,5 +19,5 @@ export const connectDB = new DataSource({
   logging: true,
   synchronize: false,
   port: 3306,
-  entities: [organizations]
+  entities: [Organizations, Hotspot, Group, Employee, Admin]
 })
