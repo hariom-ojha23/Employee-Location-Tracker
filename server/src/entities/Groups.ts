@@ -1,10 +1,10 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, BaseEntity} from "typeorm";
-import { Employee } from "./Employees";
-import { Hotspot } from "./Hotspots";
-import { Admin } from "./Admins";
+import { Employees } from "./Employees";
+import { Hotspots } from "./Hotspots";
+import { Admins } from "./Admins";
 
 @Entity()
-export class Group extends BaseEntity  {
+export class Groups extends BaseEntity  {
   @PrimaryGeneratedColumn('uuid')
   id!: string
 
@@ -14,23 +14,23 @@ export class Group extends BaseEntity  {
   @Column()
   organization!: string
 
-  @ManyToMany(() => Employee, (employee) => employee.groups, {
+  @ManyToMany(() => Employees, (employee) => employee.groups, {
     cascade: true,
   })
   @JoinTable()
-  employees!: Employee[]
+  employees!: Employees[]
 
-  @ManyToMany(() => Hotspot, (hotspot) => hotspot.groups, {
+  @ManyToMany(() => Hotspots, (hotspot) => hotspot.groups, {
     cascade: true,
   })
   @JoinTable()
-  hotspots!: string
+  hotspots!: Hotspots[]
 
-  @ManyToMany(() => Admin, (admin) => admin.groups, {
+  @ManyToMany(() => Admins, (admin) => admin.groups, {
     cascade: true,
   })
   @JoinTable()
-  admins!: string
+  admins!: Admins[]
 
   @Column('simple-json')
   schedule!: {starttime: Date, endtime: Date}

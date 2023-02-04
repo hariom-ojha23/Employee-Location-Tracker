@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { ServerApi } from "./uri";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const accessToken: string | null = localStorage.getItem("accessToken") || null;
 const refreshToken: string | null =
@@ -27,7 +29,9 @@ root.render(
   <BrowserRouter>
     <React.StrictMode>
       <ApolloProvider client={client}>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </ApolloProvider>
     </React.StrictMode>
   </BrowserRouter>

@@ -1,20 +1,20 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, BaseEntity} from "typeorm";
-import { Group } from "./Groups";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, BaseEntity, ManyToOne} from "typeorm";
+import { Groups } from "./Groups";
 
 @Entity()
-export class Hotspot extends BaseEntity  {
+export class Hotspots extends BaseEntity  {
   @PrimaryGeneratedColumn('uuid')
   id!: string
 
   @Column()
   hotspotname!: string
-
+  
   @Column()
   organization!: string
 
-  @ManyToMany(() => Group, (group) => group.hotspots)
+  @ManyToMany(() => Groups, (group) => group.hotspots)
   @JoinTable()
-  groups!: Group[]
+  groups!: Groups[]
 
   @Column('simple-json')
   location!: { latitude: number, longitude: number, address: string }

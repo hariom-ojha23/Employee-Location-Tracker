@@ -2,11 +2,11 @@ import { GraphQLList, GraphQLNonNull, GraphQLString } from "graphql";
 import { DateScalerType } from "../scalars/DateScalar";
 import { InputLocationType } from "../typedefs/Hotspots";
 import { InputGroupType } from "../typedefs/Groups";
-import { MessageType } from "../typedefs/Messages";
-import { Hotspot } from "../../entities/Hotspots";
+import { HotspotMessageType } from "../typedefs/Messages";
+import { Hotspots } from "../../entities/Hotspots";
 
 export const AddHotspot = {
-  type: MessageType,
+  type: HotspotMessageType,
   args: {
     hotspotname: {type: GraphQLNonNull(GraphQLString)},
     organization: {type: GraphQLNonNull(GraphQLString)},
@@ -17,7 +17,7 @@ export const AddHotspot = {
   },
   resolve: async (_: any, args: any) => {
     try {
-      const hotspot = new Hotspot()
+      const hotspot = new Hotspots()
       hotspot.organization = args.organization
       hotspot.hotspotname = args.hotspotname
       hotspot.location = args.location
@@ -26,7 +26,7 @@ export const AddHotspot = {
       hotspot.updated = args.updated
 
       await hotspot.save()
-      return ({successful: true, message: 'Hotspot Added Successfully'})
+      return ({successful: true, message: 'Hotspot Added Successfully', data: hotspot})
       
     } catch (error: any) {
       throw new Error(error.message)

@@ -32,7 +32,7 @@ const ProfileSettings = () => {
             <img
               className="profile-photo"
               src="https://th.bing.com/th/id/OIP.9B2RxsHDB_s7FZT0mljnhQHaHa?pid=ImgDet&rs=1"
-              alt="profile photo"
+              alt="profile"
             />
             <Box sx={{ alignSelf: "center", mt: 2 }}>
               <IconButton>
@@ -74,6 +74,7 @@ const ProfileSettings = () => {
                 fontWeight: "700",
                 background: "linear-gradient(#49a3f1, #1A73E8)",
                 borderRadius: 2,
+                mr: 2
               }}
               variant="contained"
             >
@@ -87,7 +88,6 @@ const ProfileSettings = () => {
                 fontSize: "0.75rem",
                 fontWeight: "700",
                 borderRadius: 2,
-                ml: 2,
               }}
               variant="outlined"
             >

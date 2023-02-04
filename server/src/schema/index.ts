@@ -4,7 +4,7 @@ import { GetAllOrganizations } from "./queries/Organization";
 import {applyMiddleware} from "graphql-middleware"
 import {shield} from 'graphql-shield'
 import { isAuthenticated, isNotAlreadyRegistered } from "../utils/auth";
-import { GetAllHotspots } from "./queries/Hotspot";
+import { GetAllHotspots, getHotspotDetails } from "./queries/Hotspot";
 import { AddHotspot } from "./mutations/Hotspot";
 import { AddGroup } from "./mutations/Group";
 import { GetAllGroups } from "./queries/Group";
@@ -14,6 +14,7 @@ const RootQuery = new GraphQLObjectType({
   fields: () => ({
     getAllOrganizations: GetAllOrganizations,
     getAllHotspots: GetAllHotspots,
+    getHotspotDetails: getHotspotDetails,
     getAllGroups: GetAllGroups,
   }),
 })

@@ -1,8 +1,8 @@
 import {Column, Entity, ManyToMany, PrimaryGeneratedColumn, JoinTable, BaseEntity } from "typeorm"
-import { Group } from "./Groups"
+import { Groups } from "./Groups"
 
 @Entity()
-export class Employee extends BaseEntity  {
+export class Employees extends BaseEntity  {
 
   @PrimaryGeneratedColumn('uuid')
   id!: string
@@ -14,23 +14,17 @@ export class Employee extends BaseEntity  {
   email!: string
 
   @Column()
-  password!: string
-
-  @Column()
   phonenumber!: string
 
   @Column()
   organization!: string
 
-  @ManyToMany(() => Group, (group) => group.employees)
+  @ManyToMany(() => Groups, (group) => group.employees)
   @JoinTable()
-  groups!: Group[]
+  groups!: Groups[]
 
   @Column()
   trackingstatus!: string
-
-  @Column()
-  verified!: boolean
 
   @Column()
   created!: Date
