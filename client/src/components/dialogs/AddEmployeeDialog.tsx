@@ -6,21 +6,11 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Divider from "@mui/material/Divider";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import Box from "@mui/material/Box";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import MultipleSelectInput from "../MultipleSelectInput";
 import CountryCodeSelect from "../CountryCodeSelect";
 import { Stack } from "@mui/material";
-
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
 
 type Props = {
   open: boolean;
@@ -30,7 +20,6 @@ type Props = {
 const AddEmployeeDialog = (props: Props) => {
   return (
     <Dialog
-      // TransitionComponent={Transition}
       fullWidth
       open={props.open}
       onClose={props.handleClose}

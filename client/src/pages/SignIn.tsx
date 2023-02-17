@@ -72,12 +72,13 @@ const SignIn: React.FC = (): JSX.Element => {
   };
 
   return (
-    <Box>
+    <Box sx={{height: '100vh'}}>
       <AuthPagesContainer>
         <Box>
           <Paper
             className="auth-card"
             sx={{
+              m: 0,
               px: 2,
               py: 3,
               borderRadius: 2,

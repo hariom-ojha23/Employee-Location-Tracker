@@ -34,7 +34,7 @@ const SignUp = () => {
       setToast({ open: true, variant: "error", message: error.message });
     }
     if (data) {
-      const { userInfo, accessToken, refreshToken } = data.loginOrganization;
+      const { userInfo, accessToken, refreshToken } = data.registerOrganization;
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
@@ -96,6 +96,7 @@ const SignUp = () => {
               px: 2,
               py: 3,
               borderRadius: 2,
+              m: 0,
               [theme.breakpoints.up(1100)]: {
                 width: "300px",
                 p: 6,

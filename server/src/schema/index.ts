@@ -31,10 +31,12 @@ const RootMutation = new GraphQLObjectType({
 
 const permissions = shield({
   RootQuery: {
-    getAllOrganizations: isAuthenticated
+    getAllOrganizations: isAuthenticated,
+    getAllGroups: isAuthenticated
   },
   RootMutation: {
-    registerOrganization: isNotAlreadyRegistered
+    registerOrganization: isNotAlreadyRegistered,
+    addGroup: isAuthenticated
   }
 })
 

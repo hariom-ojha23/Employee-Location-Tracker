@@ -46,7 +46,5 @@ export const InputGroupType: GraphQLInputObjectType = new GraphQLInputObjectType
     employees: {type: GraphQLList(InputEmployeeType)},
     admins: {type: GraphQLList(InputAdminType)},
     schedule: {type: GraphQLNonNull(InputScheduleType)},
-    created: {type: DateScalerType},
-    updated: {type: DateScalerType},
   })
 })

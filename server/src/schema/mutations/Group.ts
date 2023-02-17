@@ -22,6 +22,7 @@ export const AddGroup = {
   },
   resolve: async (_: any, args: any) => {
     try {
+      console.log("Here")
       const group = new Groups()
       group.groupname = args.groupname
       group.organization = args.organization
@@ -33,7 +34,7 @@ export const AddGroup = {
       group.updated = args.updated
 
       await group.save()
-      return ({successful: true, message: 'Group Added Successfully', data: group})
+      return ({successful: true, message: 'Group Added Successfully', res: group})
       
     } catch (error: any) {
       throw new Error(error.message)

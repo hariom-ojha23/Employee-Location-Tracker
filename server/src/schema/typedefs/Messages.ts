@@ -9,7 +9,7 @@ export const HotspotMessageType = new GraphQLObjectType({
   fields: () => ({
     successful: {type: GraphQLBoolean},
     message: {type: GraphQLString},
-    data: {type: HotspotType || null}
+    res: {type: HotspotType || null}
   })
 })
 
@@ -18,7 +18,7 @@ export const GroupMessageType = new GraphQLObjectType({
   fields: () => ({
     successful: {type: GraphQLBoolean},
     message: {type: GraphQLString},
-    data: {type:  GroupType || null}
+    res: {type:  GroupType || null}
   })
 })
 
@@ -27,7 +27,7 @@ export const EmployeeMessageType = new GraphQLObjectType({
   fields: () => ({
     successful: {type: GraphQLBoolean},
     message: {type: GraphQLString},
-    data: {type: EmployeeType || null}
+    res: {type: EmployeeType || null}
   })
 })
 
@@ -36,6 +36,6 @@ export const AdminMessageType = new GraphQLObjectType({
   fields: () => ({
     successful: {type: GraphQLBoolean},
     message: {type: GraphQLString},
-    data: {type: AdminType || null}
+    res: {type: AdminType || null}
   })
 })

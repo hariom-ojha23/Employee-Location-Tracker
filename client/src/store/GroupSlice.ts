@@ -6,18 +6,21 @@ export interface GroupState {
 }
 
 const initialState = {
-  groups: []
+  groups: localStorage.getItem('groups') ? JSON.parse(localStorage.getItem('groups')!!) : []
 }
 
 export const groupSlice = createSlice({
   name: 'groups',
   initialState: initialState,
   reducers: {
-    addGroup: (state) => {},
+    addNewGroup: (state, action) => {
+      state.groups.push(action.payload as never)
+      localStorage.setItem("groups", JSON.stringify(state.groups))
+    },
     deleteGroup: (state) => {},
     updateGroup: (state) => {}
   }
 })
 
-export const {addGroup, deleteGroup, updateGroup} = groupSlice.actions
+export const {addNewGroup, deleteGroup, updateGroup} = groupSlice.actions
 export default groupSlice.reducer

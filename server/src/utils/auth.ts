@@ -11,7 +11,6 @@ export const isAuthenticated = rule()(async (parent, args, ctx, info) => {
   if (!token || !token.startsWith('Bearer')) return new Error('You are not authorised')
   token = token.split(" ")[1]
   const isAccessValid = await verifyAccessToken(token)
-
   return isAccessValid
 })
 

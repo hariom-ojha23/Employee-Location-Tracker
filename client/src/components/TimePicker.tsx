@@ -19,8 +19,6 @@ const TimePicker = (props: Props) => {
           props.setTime(newValue);
         }}
         renderInput={(params) => {
-          //params.placeholder = props.placeholder;
-          console.log(params);
           return (
             <TextField fullWidth {...params} placeholder={props.placeholder} />
           );

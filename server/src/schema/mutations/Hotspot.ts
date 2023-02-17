@@ -26,7 +26,7 @@ export const AddHotspot = {
       hotspot.updated = args.updated
 
       await hotspot.save()
-      return ({successful: true, message: 'Hotspot Added Successfully', data: hotspot})
+      return ({successful: true, message: 'Hotspot Added Successfully', res: hotspot})
       
     } catch (error: any) {
       throw new Error(error.message)

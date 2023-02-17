@@ -48,24 +48,25 @@ const rows = [
   createData("Oreo", 437, 18.0, 63, 4.0),
 ];
 
+
 function SimpleTable() {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [dataPerPage, setdataPerPage] = React.useState(10);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (
+  const handleChangedataPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    setdataPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  // Avoid a layout jump when reaching the last page with empty data.
+  const emptydata =
+    page > 0 ? Math.max(0, (1 + page) * dataPerPage - rows.length) : 0;
 
   return (
     <Paper
@@ -97,8 +98,8 @@ function SimpleTable() {
           </TableHead>
           <TableBody>
             {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => (
+              .slice(page * dataPerPage, page * dataPerPage + dataPerPage)
+              .map((row: any, index: number) => (
                 <TableRow key={index} className="table-row">
                   <TableCell
                     className="table-cell"
@@ -122,10 +123,10 @@ function SimpleTable() {
                   </TableCell>
                 </TableRow>
               ))}
-            {emptyRows > 0 && (
+            {emptydata > 0 && (
               <TableRow
                 style={{
-                  height: 53 * emptyRows,
+                  height: 53 * emptydata,
                 }}
               >
                 <TableCell colSpan={6} />
@@ -134,15 +135,15 @@ function SimpleTable() {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
+      {/* <TablePagination
+        dataPerPageOptions={[5, 10, 25]}
         component="div"
         count={rows.length}
-        rowsPerPage={rowsPerPage}
+        dataPerPage={dataPerPage}
         page={page}
         onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+        ondataPerPageChange={handleChangedataPerPage}
+      /> */}
     </Paper>
   );
 }
