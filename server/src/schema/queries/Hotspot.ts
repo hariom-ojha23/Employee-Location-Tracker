@@ -14,7 +14,8 @@ export const GetAllHotspots = {
 
       const hotspots = await Hotspots.find({
         where: {organization: organization},
-        relations: ['groups']
+        relations: ['groups'],
+        order: { created: "DESC"}
       })
 
       return hotspots

@@ -13,7 +13,7 @@ export const LocationType = new GraphQLObjectType({
 })
 
 export const InputLocationType = new GraphQLInputObjectType({
-  name: "InputHotspotLocation",
+  name: "InputLocationType",
   fields: () => ({
     latitude: {type: GraphQLFloat},
     longitude: {type: GraphQLFloat},

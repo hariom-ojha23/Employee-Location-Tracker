@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import AddHotspotDialog from "../dialogs/AddHotspotDialog";
 import ToolbarSearchField from "../ToolbarSearchField";
+import { ToastType } from "../../types";
+import ToastNotification from "../ToastNotification";
 
 type HotspotProps = {
   title: string;
@@ -13,10 +15,26 @@ type HotspotProps = {
 
 const HotspotToolbar = (props: HotspotProps) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [toast, setToast] = useState<ToastType>({
+    open: false,
+    variant: "success",
+    message: "",
+  });
 
   const toggleDialog = useCallback(() => {
     setOpen(!open);
   }, [open]);
+
+  const handleToastClose = useCallback(() => {
+    return setToast({ ...toast, open: false });
+  }, [toast]);
+
+  const showSuccessToast = useCallback(
+    (message: string) => {
+      return setToast({...toast, message, open: true})
+    },
+    [toast]
+  )
 
   return (
     <React.Fragment>
@@ -53,8 +71,9 @@ const HotspotToolbar = (props: HotspotProps) => {
         >
           Add Hotspot
         </Button>
-        <AddHotspotDialog open={open} handleClose={toggleDialog} />
+        <AddHotspotDialog open={open} handleClose={toggleDialog} showSuccessToast={showSuccessToast} />
       </Stack>
+      <ToastNotification toast={toast} handleClose={handleToastClose} />
     </React.Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useState, useCallback} from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -11,6 +11,9 @@ import { TransitionProps } from "@mui/material/transitions";
 import MultipleSelectInput from "../MultipleSelectInput";
 import CountryCodeSelect from "../CountryCodeSelect";
 import { Stack } from "@mui/material";
+import { GroupType } from "../../types";
+import { useQuery } from "@apollo/client";
+import { GET_ALL_GROUPS } from "../../graphql/groups";
 
 type Props = {
   open: boolean;
@@ -18,6 +21,24 @@ type Props = {
 };
 
 const AddEmployeeDialog = (props: Props) => {
+  const [groups, setGroups] = useState<Array<GroupType>>([])
+
+  const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')!!) : null
+  const {loading, error, data} = useQuery(GET_ALL_GROUPS, {variables: {organization: userInfo.id}})
+
+  const setGroupsCallback = useCallback((val: GroupType) => {
+    let exist = groups.findIndex((item) => item.id === val.id)
+    const list = groups
+
+    if (exist === -1) {
+      list.push(val)
+      setGroups([...list])
+    } else {
+      list.splice(exist, 1)
+      setGroups([...list])
+    }
+  }, [])
+
   return (
     <Dialog
       fullWidth
@@ -50,8 +71,10 @@ const AddEmployeeDialog = (props: Props) => {
             className="form-input"
           />
         </Stack>
-        <MultipleSelectInput placeholder="Select Groups" />
-      </DialogContent>
+        {
+          (loading || error) ? <MultipleSelectInput placeholder="Select Groups" data={[]} setGroups={setGroupsCallback} /> 
+          : <MultipleSelectInput placeholder="Select Groups" data={data.getAllGroups} setGroups={setGroupsCallback} /> 
+        }      </DialogContent>
       <DialogActions sx={{ px: 3, pb: 1.5 }}>
         <Button
           sx={{ fontSize: "0.7rem", borderRadius: 1.5, px: 3, py: 1.2 }}

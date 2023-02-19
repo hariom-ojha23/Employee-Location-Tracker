@@ -9,9 +9,10 @@ type ViewStateType = {
 
 type Props = {
   height: string;
+  setLocation: (val: MapLayerMouseEvent) => void
 };
 
-const MapComponent = (props: Props): JSX.Element => {
+const FormMapComponent = (props: Props): JSX.Element => {
   const [viewState, setViewState] = useState<ViewStateType>({
     longitude: 77.23148,
     latitude: 28.65195,
@@ -28,10 +29,11 @@ const MapComponent = (props: Props): JSX.Element => {
       style={{ width: "100%", height: props.height }}
       mapStyle={MapBoxCustomStyle}
       onMove={onMove}
+      onClick={(e) => props.setLocation(e)}
     >
       <Marker latitude={28.65195} longitude={77.23148} color="red" />
     </Map>
   );
 };
 
-export default React.memo(MapComponent);
+export default React.memo(FormMapComponent);

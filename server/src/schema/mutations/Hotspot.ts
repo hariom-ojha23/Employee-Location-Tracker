@@ -17,6 +17,7 @@ export const AddHotspot = {
   },
   resolve: async (_: any, args: any) => {
     try {
+      console.log("Here")
       const hotspot = new Hotspots()
       hotspot.organization = args.organization
       hotspot.hotspotname = args.hotspotname

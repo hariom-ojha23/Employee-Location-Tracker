@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, BaseEntity} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, BaseEntity, DeleteDateColumn, UpdateDateColumn, CreateDateColumn} from "typeorm";
 import { Employees } from "./Employees";
 import { Hotspots } from "./Hotspots";
 import { Admins } from "./Admins";
@@ -35,9 +35,12 @@ export class Groups extends BaseEntity  {
   @Column('simple-json')
   schedule!: {starttime: Date, endtime: Date}
 
-  @Column()
+  @CreateDateColumn({ name: 'created', type: 'timestamp' })
   created!: Date
 
-  @Column()
+  @UpdateDateColumn({ name: 'updated', type: 'timestamp' })
   updated!: Date
+
+  @DeleteDateColumn({ name: 'deleted' })
+  deleted?: Date
 }

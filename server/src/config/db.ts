@@ -17,7 +17,7 @@ export const connectDB = new DataSource({
   username: 'root',
   password: DB_PASSWORD,
   logging: true,
-  synchronize: true,
+  synchronize: false,
   port: 3306,
   entities: [Organizations, Hotspots, Groups, Employees, Admins]
 })

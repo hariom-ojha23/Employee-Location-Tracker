@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { BaseEntity, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm"
 
 @Entity()
 export class Organizations extends BaseEntity {
@@ -21,9 +21,12 @@ export class Organizations extends BaseEntity {
   @Column()
   orglogo!: string
 
-  @Column()
+  @CreateDateColumn({ name: 'created', type: 'timestamp' })
   created!: Date
 
-  @Column()
+  @UpdateDateColumn({ name: 'updated', type: 'timestamp' })
   updated!: Date
+
+  @DeleteDateColumn({ name: 'deleted' })
+  deleted?: Date
 }

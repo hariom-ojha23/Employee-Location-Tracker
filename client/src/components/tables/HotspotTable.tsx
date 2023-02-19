@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,20 +7,20 @@ import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { HotspotType } from "../../types";
 import moment from "moment";
-import { GroupType } from "../../types";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { IconButton } from "@mui/material";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MenuComponent from "../MenuComponent";
 
 type Props = {
-  rows: Array<GroupType>
   tableHead: Array<string>
+  rows: Array<HotspotType>
 }
 
-const GroupTable = ({rows, tableHead}: Props) => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+function HotspotTable({tableHead, rows}: Props) {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -35,14 +35,15 @@ const GroupTable = ({rows, tableHead}: Props) => {
     setPage(0);
   };
 
+  // Avoid a layout jump when reaching the last page with empty data.
   const emptydata =
-  page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  function getHotspotNames(list: Array<object>) {
-    const arr = list.map((x: any) => x.hotspotname)
+  function getGroupNames(list: Array<object>) {
+    const arr = list.map((x: any) => x.groupname)
     return arr.join(', ')
   }
-
+  
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -85,33 +86,19 @@ const GroupTable = ({rows, tableHead}: Props) => {
                     key={index}
                     scope="row"
                   >
-                    {row.groupname}
+                    {row.hotspotname}
                   </TableCell>
                   <TableCell className="table-cell" align="right">
-                    {
-                      row.admins.length === 0 ? '--' : row.admins.join(', ')
-                    }
+                    {row.location.address}
                   </TableCell>
                   <TableCell className="table-cell" align="right">
-                    {
-                      row.hotspots.length === 0 ? '--' : getHotspotNames(row.hotspots)
-                    }
-                  </TableCell>
-                  <TableCell className="table-cell" align="right">
-                  {
-                    row.schedule.starttime && row.schedule.endtime ? 
-                    `${moment(row.schedule.starttime).format('hh:mm a')} - ${moment(row.schedule.endtime).format('hh:mm a')}`
-                    : '--'
-                  }
+                    {row.groups.length === 0 ? '--' : getGroupNames(row.groups)}
                   </TableCell>
                   <TableCell className="table-cell" align="right">
                     {moment(row.created).format('D MMM, YYYY')}
                   </TableCell>
                   <TableCell className="table-cell" align="right">
-                    {moment(row.updated).format('D MMM, YYYY')}
-                  </TableCell>
-                  <TableCell className="table-cell" align="right">
-                    <IconButton sx={{p: 0.5}} onClick={handleMenuClick}>
+                  <IconButton sx={{p: 0.5}} onClick={handleMenuClick}>
                       <MoreVertIcon sx={{fontSize: 18}} />
                     </IconButton>
                   </TableCell>
@@ -123,7 +110,7 @@ const GroupTable = ({rows, tableHead}: Props) => {
                   height: 53 * emptydata,
                 }}
               >
-                <TableCell colSpan={7} />
+                <TableCell colSpan={6} />
               </TableRow>
             )}
           </TableBody>
@@ -140,7 +127,7 @@ const GroupTable = ({rows, tableHead}: Props) => {
         />
         <MenuComponent open={open} anchorEl={anchorEl} handleClose={handleMenuClose} />
     </Paper>
-  )
+  );
 }
 
-export default React.memo(GroupTable)
+export default React.memo(HotspotTable);

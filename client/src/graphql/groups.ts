@@ -30,6 +30,8 @@ export const GET_ALL_GROUPS = gql`
         starttime
         endtime
       }
+      created
+      updated
       hotspots {
         hotspotname
       }

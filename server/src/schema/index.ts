@@ -6,7 +6,7 @@ import {shield} from 'graphql-shield'
 import { isAuthenticated, isNotAlreadyRegistered } from "../utils/auth";
 import { GetAllHotspots, getHotspotDetails } from "./queries/Hotspot";
 import { AddHotspot } from "./mutations/Hotspot";
-import { AddGroup } from "./mutations/Group";
+import { AddGroup, DeleteGroup } from "./mutations/Group";
 import { GetAllGroups } from "./queries/Group";
 
 const RootQuery = new GraphQLObjectType({
@@ -26,6 +26,7 @@ const RootMutation = new GraphQLObjectType({
     loginOrganization: LoginOrganization,
     addHotspot: AddHotspot,
     addGroup: AddGroup,
+    deleteGroup: DeleteGroup
   })
 })
 

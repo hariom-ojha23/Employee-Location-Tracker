@@ -37,7 +37,7 @@ export const GroupType: GraphQLObjectType = new GraphQLObjectType({
 })
 
 export const InputGroupType: GraphQLInputObjectType = new GraphQLInputObjectType({
-  name: "InputGroup",
+  name: "InputGroupType",
   fields: () => ({
     id: {type: GraphQLString},
     groupname: {type: GraphQLNonNull(GraphQLString)},

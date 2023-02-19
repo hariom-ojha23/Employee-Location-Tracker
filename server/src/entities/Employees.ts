@@ -1,4 +1,4 @@
-import {Column, Entity, ManyToMany, PrimaryGeneratedColumn, JoinTable, BaseEntity } from "typeorm"
+import {Column, Entity, ManyToMany, PrimaryGeneratedColumn, JoinTable, BaseEntity, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm"
 import { Groups } from "./Groups"
 
 @Entity()
@@ -26,9 +26,12 @@ export class Employees extends BaseEntity  {
   @Column()
   trackingstatus!: string
 
-  @Column()
+  @CreateDateColumn({ name: 'created', type: 'timestamp' })
   created!: Date
 
-  @Column()
+  @UpdateDateColumn({ name: 'updated', type: 'timestamp' })
   updated!: Date
+
+  @DeleteDateColumn({ name: 'deleted' })
+  deleted?: Date
 }

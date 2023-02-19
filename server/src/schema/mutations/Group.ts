@@ -22,7 +22,6 @@ export const AddGroup = {
   },
   resolve: async (_: any, args: any) => {
     try {
-      console.log("Here")
       const group = new Groups()
       group.groupname = args.groupname
       group.organization = args.organization
@@ -36,6 +35,34 @@ export const AddGroup = {
       await group.save()
       return ({successful: true, message: 'Group Added Successfully', res: group})
       
+    } catch (error: any) {
+      throw new Error(error.message)
+    }
+  }
+}
+
+
+export const DeleteGroup = {
+  type: GroupMessageType,
+  args: {
+    id: {type: GraphQLNonNull(GraphQLString)}
+  },
+  resolve: async (_: any, args: any ) => {
+    try {
+      const group = await Groups.findOne({where: {id: args.id}})
+
+      if (group !== null) {
+        await Groups.softRemove(group)
+          .then(() => {
+            return ({successful: true, message: 'Group Deleted Successfully'})
+          })
+          .catch((err: any) => {
+            throw new Error(err.message)
+          })
+      }
+      else {
+        throw new Error('Group doesn\'t exist. Invalid Group Id')
+      }
     } catch (error: any) {
       throw new Error(error.message)
     }

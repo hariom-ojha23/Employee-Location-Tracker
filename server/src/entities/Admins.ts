@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, BaseEntity} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, BaseEntity, CreateDateColumn, UpdateDateColumn, DeleteDateColumn} from "typeorm";
 import { Groups } from "./Groups";
 
 @Entity()
@@ -25,9 +25,12 @@ export class Admins extends BaseEntity  {
   @Column()
   verified!: boolean
 
-  @Column()
+  @CreateDateColumn({ name: 'created', type: 'timestamp' })
   created!: Date
 
-  @Column()
+  @UpdateDateColumn({ name: 'updated', type: 'timestamp' })
   updated!: Date
+
+  @DeleteDateColumn({ name: 'deleted' })
+  deleted?: Date
 }

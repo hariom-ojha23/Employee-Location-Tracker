@@ -3,6 +3,7 @@ import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { GroupType } from "../types";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -14,19 +15,6 @@ const MenuProps = {
     },
   },
 };
-
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
 
 function getStyles(name: string, personName: string[], theme: Theme) {
   return {
@@ -40,17 +28,19 @@ function getStyles(name: string, personName: string[], theme: Theme) {
 
 type Props = {
   placeholder: string;
+  data: Array<GroupType>
+  setGroups: (val: GroupType) => void
 };
 
 export default function MultipleSelectInput(props: Props) {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState<string[]>([]);
+  const [groupName, setGroupName] = React.useState<string[]>([]);
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  const handleChange = (event: SelectChangeEvent<typeof groupName>) => {
     const {
       target: { value },
     } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
+    setGroupName(typeof value === "string" ? value.split(",") : value);
   };
 
   return (
@@ -59,7 +49,7 @@ export default function MultipleSelectInput(props: Props) {
         fullWidth
         multiple
         displayEmpty
-        value={personName}
+        value={groupName}
         onChange={handleChange}
         sx={{ mb: 2 }}
         className="form-select"
@@ -75,13 +65,14 @@ export default function MultipleSelectInput(props: Props) {
           return selected.join(", ");
         }}
       >
-        {names.map((name) => (
+        {props.data.map((group: GroupType) => (
           <MenuItem
-            key={name}
-            value={name}
-            style={getStyles(name, personName, theme)}
+            key={group.id}
+            value={group.groupname}
+            style={getStyles(group.groupname, groupName, theme)}
+            onClick={() => props.setGroups(group)}
           >
-            {name}
+            {group.groupname}
           </MenuItem>
         ))}
       </Select>

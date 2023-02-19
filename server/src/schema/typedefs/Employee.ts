@@ -18,7 +18,7 @@ export const EmployeeType: GraphQLObjectType = new GraphQLObjectType({
 })
 
 export const InputEmployeeType: GraphQLInputObjectType = new GraphQLInputObjectType({
-  name: "InputEmployee",
+  name: "InputEmployeeType",
   fields: () => ({
     id: {type: GraphQLString},
     fullname: {type: GraphQLNonNull(GraphQLString)},

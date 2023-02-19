@@ -14,14 +14,14 @@ export const GetAllGroups = {
 
       const groups = await Groups.find({
         where: {organization: organization},
-        relations: ['hotspots', 'admins', 'employees']
+        relations: ['hotspots', 'admins', 'employees'],
+        order: { created: "DESC"}
       })
 
       return groups
     } catch (error: any) {
       throw new Error(error.message)
     }
-    
   }
 }
 
