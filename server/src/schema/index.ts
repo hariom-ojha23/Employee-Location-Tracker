@@ -8,6 +8,8 @@ import { GetAllHotspots, getHotspotDetails } from "./queries/Hotspot";
 import { AddHotspot } from "./mutations/Hotspot";
 import { AddGroup, DeleteGroup } from "./mutations/Group";
 import { GetAllGroups } from "./queries/Group";
+import { AddEmployee } from "./mutations/Employee";
+import { GetAllEmployees, GetEmployeeDetails } from "./queries/Employee";
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
@@ -16,6 +18,8 @@ const RootQuery = new GraphQLObjectType({
     getAllHotspots: GetAllHotspots,
     getHotspotDetails: getHotspotDetails,
     getAllGroups: GetAllGroups,
+    getAllEmployees: GetAllEmployees,
+    getEmployeeDetails: GetEmployeeDetails
   }),
 })
 
@@ -26,7 +30,8 @@ const RootMutation = new GraphQLObjectType({
     loginOrganization: LoginOrganization,
     addHotspot: AddHotspot,
     addGroup: AddGroup,
-    deleteGroup: DeleteGroup
+    deleteGroup: DeleteGroup,
+    addEmployee: AddEmployee
   })
 })
 
