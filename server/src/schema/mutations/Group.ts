@@ -53,15 +53,15 @@ export const DeleteGroup = {
 
       if (group !== null) {
         await Groups.softRemove(group)
-          .then(() => {
-            return ({successful: true, message: 'Group Deleted Successfully'})
-          })
           .catch((err: any) => {
-            throw new Error(err.message)
+            console.log(err)
+            return new Error(err.message)
           })
+
+          return ({successful: true, message: 'Group Deleted Successfully'})
       }
       else {
-        throw new Error('Group doesn\'t exist. Invalid Group Id')
+        return new Error('Group doesn\'t exist. Invalid Group')
       }
     } catch (error: any) {
       throw new Error(error.message)

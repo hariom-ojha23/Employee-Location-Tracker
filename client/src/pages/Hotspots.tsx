@@ -6,6 +6,7 @@ import { ToastType } from "../types";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_HOTSPOTS } from "../graphql/hotspots";
 import ToastNotification from "../components/ToastNotification";
+import HotspotMapComponent from "../components/maps/HotspotMapComponent";
 
 const tableHead = ['Hotspot Name', 'Address', 'Groups', 'Created', 'Action']
 
@@ -41,7 +42,8 @@ const Hotspots: React.FC = (): JSX.Element => {
             overflow: "hidden",
           }}
         >
-          <MapComponent height="calc(100vh - 85px)" />
+          {(error || loading) && <HotspotMapComponent data={[]} height="calc(100vh - 85px)" />}
+          {data && <HotspotMapComponent data={data.getAllHotspots} height="calc(100vh - 85px)" />}
         </Box>
       </Grid>
     </Grid>

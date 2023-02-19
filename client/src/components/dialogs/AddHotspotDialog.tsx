@@ -12,7 +12,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GET_ALL_GROUPS } from "../../graphql/groups";
 import { GroupType, LocationType, ToastType } from "../../types";
 import { MapLayerMouseEvent } from "react-map-gl";
-import FormMapComponent from "../FormMapComponent";
+import FormMapComponent from "../maps/FormMapComponent";
 import ToastNotification from "../ToastNotification";
 import { ADD_HOTSPOT, GET_ALL_HOTSPOTS } from "../../graphql/hotspots";
 
@@ -44,6 +44,7 @@ const AddHotspotDialog = (props: Props) => {
         props.showSuccessToast(message)
         setHotspotName('')
         setLocation({latitude: 0, longitude: 0, address: ''})
+        setGroups([])
         props.handleClose()
       }
     }

@@ -41,3 +41,12 @@ export const GET_ALL_GROUPS = gql`
     }
   }
 `
+
+export const DELETE_GROUP = gql`
+  mutation deleteGroup($id: String!) {
+    deleteGroup(id: $id) {
+      successful
+      message
+    }
+  }
+`

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Map, { ViewStateChangeEvent, Marker, MapLayerMouseEvent } from "react-map-gl";
-import { MapBoxApi, MapBoxCustomStyle } from "../uri";
+import { MapBoxApi, MapBoxCustomStyle } from "../../uri";
 
 type ViewStateType = {
   longitude: number;
